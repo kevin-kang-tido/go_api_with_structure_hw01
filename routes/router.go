@@ -20,6 +20,9 @@ func SetUpAllRouter() *gin.Engine{
 		productGroup.DELETE("/:id",controllers.DeleteProduct)
 	}
 
+	// Route to trigger CouchDB replication
+	router.POST("/replicate",controllers.ReplicateToCouchDB)
+
 	return router;
 
 }

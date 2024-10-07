@@ -10,6 +10,27 @@ import (
 	// "github.com/go-playground/locales/id"
 )
 
+// Request payload to initiate replication
+type ReplicationPayload struct {
+	Source     string `json:"source"`
+	Target     string `json:"target"`
+	Continuous bool   `json:"continuous"`
+}
+
+// Handler to trigger replication from SQLite to CouchDB
+func ReplicateToCouchDB(c *gin.Context) {
+	// Call the service to start replication
+	err := services.ReplicateFromSQLiteToCouchDB()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Replication completed successfully"})
+}
+
+
+// get all products
 func GetAllProducts(handleRequest*gin.Context){
 
 	products, error := services.GetAllProducts();
@@ -119,3 +140,5 @@ func DeleteProduct(handleDeleteProduct *gin.Context){
 
 	base.SendDeleteSuccess(handleDeleteProduct,http.StatusNoContent,"Product has been Delete Successfully!")
 }
+
+

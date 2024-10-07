@@ -25,4 +25,4 @@ func UpdateProduct(product *listProduct.Product) error {
 // delete pruduct 
 func DeleteProudct(id uint) error{
 	return repositories.DeleteProduct(id);
-}                         
+}                        

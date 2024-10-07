@@ -41,8 +41,7 @@ func SendSuccess(handleRequest *gin.Context, statusCode int, data interface{}) {
 func SendDeleteSuccess(handleRequest *gin.Context, statusCode int, message string) {
     handleRequest.JSON(statusCode,message);
 }
-// handle update 
-// send error 
+// handle update  
 func UpdateMessage(handleRequest *gin.Context, statusCode int ,message string, data interface{}){
 	handleRequest.JSON(statusCode,CustomeError{
 		Message: message,
